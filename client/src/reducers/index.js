@@ -1,7 +1,14 @@
-import { combineReducers } from "redux";
-import authReducer from "./authReducer";
-import errorReducer from "./errorReducer";
-export default combineReducers({
-    auth: authReducer,
-    errors: errorReducer
-});
+import { createStore, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
+import rootReducer from "./reducers";
+const initialState = {};
+const middleware = [thunk];
+const store = createStore(
+    rootReducer,
+    initialState,
+    compose(
+        applyMiddleware(...middleware),
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    )
+);
+export default store;
