@@ -7,7 +7,7 @@ import jwt_decode from "jwt-decode"; import {
 } from "./types";// Register User
 
 //backendUri
-export const backendHost = "https://terragraeca-frond.herokuapp.com";
+export const backendHost = "https://terragraeca-backend.herokuapp.com";
 
 export const registerUser = (userData, history) => dispatch => {
     axios
