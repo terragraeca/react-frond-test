@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
-import classnames from "classnames"; class Login extends Component {
+import classnames from "classnames";
+
+class Login extends Component {
     constructor() {
         super();
         this.state = {
@@ -11,7 +13,15 @@ import classnames from "classnames"; class Login extends Component {
             password: "",
             errors: {}
         };
-    } componentWillReceiveProps(nextProps) {
+    }
+    componentDidMount() {
+        // If logged in and user navigates to Login page, should redirect them to dashboard
+        if (this.props.auth.isAuthenticated) {
+            this.props.history.push("/dashboard");
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
         if (nextProps.auth.isAuthenticated) {
             this.props.history.push("/dashboard"); // push user to dashboard when they login
         } if (nextProps.errors) {
